@@ -120,7 +120,7 @@ defmodule Hedwig.Client do
   end
 
   def handle_cast({:handle_stanza, stanza}, %Client{event_manager: pid, config: %{ignore_from_self?: ignore}} = client) do
-    Logger.info fn -> "Incoming stanza: #{inspect stanza}" end
+    Logger.debug fn -> "Incoming stanza: #{inspect stanza}" end
 
     drop = Helpers.from_self?(stanza.from, client) && ignore
 
@@ -154,7 +154,7 @@ defmodule Hedwig.Client do
   end
 
   def handle_info(msg, client) do
-    Logger.info fn ->
+    Logger.warning fn ->
       "Unexpected message received: #{inspect msg}"
     end
     {:noreply, client}

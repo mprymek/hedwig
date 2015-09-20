@@ -156,7 +156,7 @@ defmodule Hedwig.Conn do
   end
 
   defp wait_for_socket(%Conn{} = conn) do
-    Logger.info fn -> "Waiting for socket" end
+    Logger.debug fn -> "Waiting for socket" end
     receive do
       {:connected, socket} ->
         %Conn{conn | socket: socket}

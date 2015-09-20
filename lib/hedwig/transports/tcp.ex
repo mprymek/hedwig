@@ -42,7 +42,7 @@ defmodule Hedwig.Transports.TCP do
   Send data over the socket.
   """
   def send(%Conn{socket: socket} = conn, stanza) do
-    Logger.info fn -> "Outgoing stanza: #{inspect stanza}" end
+    Logger.debug fn -> "Outgoing stanza: #{inspect stanza}" end
 
     stanza = Stanza.to_xml(stanza)
     case conn.ssl? do
